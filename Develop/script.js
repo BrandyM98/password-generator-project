@@ -27,6 +27,8 @@ function generatePassword() {
   var specialCharacters = ["#", "$", "%", "&", "(", ")", "*", "+", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "^", "_", "`", "{", "|" ,"}", "~"];
 }
 // this section has to do with the length of characters in readme above in line 6
+function generatePassword(){}
+
 lengthOfCharacters = promt("How many characters do you want in your password? Please choose between 8-128 characters.");
 if(lengthOfCharacters < 8 || lengthOfCharacters >28){
   console.log("Please choose a password with the correct number of characters.");
@@ -37,18 +39,18 @@ if(lengthOfCharacters < 8 || lengthOfCharacters >28){
 }
 
 //this section has to do with the lowercase characters of the password in readme above in line 9
-lowerCaseCharacters =("Do you wish to include lowercase characters in your password?");
-if (lowerCaseCharacters){
+lowercaseCharacters =("Do you wish to include lowercase characters in your password?");
+if (lowercaseCharacters){
   console.log("Your password will contain lowercase characters!");
-} else (lowerCaseCharacters){
+} else (lowercaseCharacters){
   console.log("Your password will NOT contain lowercase characters!")
 }
 
 //this section has to do with the upperrcase characters of the password in readme above in line 9
-upperCaseCharacters =("Do you wish to include uppercase characters in your password?");
-if (upperCaseCharacters){
+uppercaseCharacters =("Do you wish to include uppercase characters in your password?");
+if (uppercaseCharacters){
   console.log("Your password will contain uppercase characters!");
-} else (upperCaseCharacters){
+} else (uppercaseCharacters){
   console.log("Your password will NOT contain uppercase characters!")
 }
 
@@ -68,7 +70,41 @@ if (specialCharacters){
   console.log("Your password will NOT contain special characters !")
 }
 
+//this is just in case they choose none of the criteria
+if(!lowercaseCharacters && !uppercaseCharacters && !numCharacters && !specialCharacters){
+  console.log("Please select at least one character!");
+}
 
+//this is to confirm password criteria selected
+//might change possible characters to something else
+
+var possibleCharacters=[] //I think I need this to generate the password
+
+var confirmLength= "";
+var confirmLowercaseCharacter,
+var confirmUppercaseCharacter,
+var confirmNumCharacter,
+var confirmSpecialCharacter,
+
+
+
+
+
+if(lowercaseCharacters){
+  possibleCharacters=possibleCharacters.concat(lowercaseCharacters);
+}if(uppercaseCharacters){
+  possibleCharacters=possibleCharacters.concat(uppercaseCharacters);
+}if(numCharacters){
+  possibleCharacters=possibleCharacters.concat(numCharacters);
+}if(specialCharacters){
+  possibleCharacters=possibleCharacters.concat(specialCharacters);
+}
+
+//to generate random password
+var finalPassword= ""
+for (var i = 0; i<lengthOfCharacters; i++){
+  var rng=[Math.floor(Math.random() * possibleCharacters.length)];
+} console.log(finalPassword);
 
 
 
