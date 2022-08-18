@@ -8,7 +8,7 @@ function generatePassword() {
     // 1 Prompt the user for the password criteria
     var initialInput = prompt("How many characters would you like your password to contain? Please choose between 8-128 characters.")
     var lengthOfCharacters = parseInt(initialInput)
-//if I put in a NaN the prompt comes up but then the following prompts do not
+    //if I put in a NaN the prompt comes up but then the following prompts do not
     if (isNaN(lengthOfCharacters)) {
         prompt("Please enter a valid number between 8 and 128.");
         return
@@ -23,7 +23,7 @@ function generatePassword() {
         prompt("Do you wish to include lowercase characters in your password?");
         return
     }
-}
+
     var conLowercaseCharacters = confirm("Do you wish to include lowercase characters in your password?");
     var conUppercaseCharacters = confirm("Do you wish to include uppercase characters in your password?");
     var conNumCharacters = confirm("Do you wish to include numbers in your password?");
@@ -58,6 +58,7 @@ function generatePassword() {
 
     for (var i = 0; i < lengthOfCharacters; i++) {
         finalPassword += wantedCharacters[Math.floor(Math.random() * wantedCharacters.length)];
+    }
     return finalPassword
 }
 
