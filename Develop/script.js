@@ -56,13 +56,10 @@ function generatePassword() {
 
     var finalPassword = ""
 
-
     for (var i = 0; i < lengthOfCharacters; i++) {
-        finalPassword += wantedCharacters[Math.floor(Math.random() * wantedCharacters.length)]
-    }
-    return finalPassword;
-
-       
+        finalPassword += wantedCharacters[Math.floor(Math.random() * wantedCharacters.length)];
+    return finalPassword
+}
 
 // Write password to the #password input
 function writePassword() {
