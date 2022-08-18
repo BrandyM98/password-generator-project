@@ -14,7 +14,6 @@ function randomInt(min, max) {
     return list[randomInt(0, list.length - 1)]
 }
 
-
 function generatePassword() {
     // 1 Prompt the user for the password criteria
     var initialInput = prompt("How many characters would you like your password to contain? Please choose between 8-128 characters.")
