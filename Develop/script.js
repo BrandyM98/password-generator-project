@@ -1,14 +1,10 @@
-// Assignment Code
+
 var generateBtn = document.querySelector("#generate");
 
-//TODO: CODE GOES HERE
-//change randonInt to something else
-
 function generatePassword() {
-    // 1 Prompt the user for the password criteria
     var initialInput = prompt("How many characters would you like your password to contain? Please choose between 8-128 characters.")
     var lengthOfCharacters = parseInt(initialInput)
-    //if I put in a NaN the prompt comes up but then the following prompts do not
+
     if (isNaN(lengthOfCharacters)) {
         prompt("Please enter a valid number between 8 and 128.");
         return
@@ -36,10 +32,6 @@ function generatePassword() {
 
     var wantedCharacters = []
 
-
-    //var finalPassword = lowercaseCharacters.concat(uppercaseCharacters, numCharacters, specialCharacters);
-    //console(finalPassword);
-
     if (conLowercaseCharacters) {
         wantedCharacters = wantedCharacters.concat(lowercaseCharacters)
     }
@@ -59,10 +51,10 @@ function generatePassword() {
     for (var i = 0; i < lengthOfCharacters; i++) {
         finalPassword += wantedCharacters[Math.floor(Math.random() * wantedCharacters.length)];
     }
+
     return finalPassword
 }
 
-// Write password to the #password input
 function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
@@ -71,7 +63,6 @@ function writePassword() {
 
 }
 
-// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 
