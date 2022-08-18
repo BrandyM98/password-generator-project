@@ -3,24 +3,14 @@ var generateBtn = document.querySelector("#generate");
 
 //TODO: CODE GOES HERE
 //change randonInt to something else
-function randomInt(min, max) {
-
-    if (!max) {
-        max = min
-        min = 0
-    } var cat = Math.random()
-    return Math.floor(min + (1 - cat) * cat * max)
-} function getRandomArray(list) {
-    return list[randomInt(0, list.length - 1)]
-}
 
 function generatePassword() {
     // 1 Prompt the user for the password criteria
     var initialInput = prompt("How many characters would you like your password to contain? Please choose between 8-128 characters.")
     var lengthOfCharacters = parseInt(initialInput)
-
+//if I put in a NaN the prompt comes up but then the following prompts do not
     if (isNaN(lengthOfCharacters)) {
-        prompt("Please enter a valid number.");
+        prompt("Please enter a valid number between 8 and 128.");
         return
     }
 
@@ -33,7 +23,7 @@ function generatePassword() {
         prompt("Do you wish to include lowercase characters in your password?");
         return
     }
-
+}
     var conLowercaseCharacters = confirm("Do you wish to include lowercase characters in your password?");
     var conUppercaseCharacters = confirm("Do you wish to include uppercase characters in your password?");
     var conNumCharacters = confirm("Do you wish to include numbers in your password?");
@@ -46,37 +36,33 @@ function generatePassword() {
 
     var wantedCharacters = []
 
-    for (var i = 0; i < lowercaseCharacters.length; i++) {
-        uppercaseCharacters[i] = lowercaseCharacters[i].toUpperCase()
-    }
 
-    if (conLowercaseCharacters === true) {
-        wantedCharacters.push(lowercaseCharacters)
-    }
-    if (conUppercaseCharacters === true) {
-        wantedCharacters.push(uppercaseCharacters)
-    }
-    if (conNumCharacters === true) {
-        wantedCharacters.push(numCharacters)
-    }
-    if (conSpecialCharacters === true) {
-        wantedCharacters.push(specialCharacters)
-    }
+    //var finalPassword = lowercaseCharacters.concat(uppercaseCharacters, numCharacters, specialCharacters);
+    //console(finalPassword);
 
-    if (wantedCharacters.length === 0) {
-        wantedCharacters.push(lowercaseCharacters)
+    if (conLowercaseCharacters) {
+        wantedCharacters = wantedCharacters.concat(lowercaseCharacters)
     }
+    if (conUppercaseCharacters) {
+        wantedCharacters = wantedCharacters.concat(uppercaseCharacters)
+    }
+    if (conNumCharacters) {
+        wantedCharacters = wantedCharacters.concat(numCharacters)
+    }
+    if (conSpecialCharacters) {
+        wantedCharacters = wantedCharacters.concat(specialCharacters)
+    }
+    console.log(wantedCharacters)
 
     var finalPassword = ""
 
+
     for (var i = 0; i < lengthOfCharacters; i++) {
-        var randomPass = getRandomArray(wantedCharacters)
-        var getRandomPass = getRandomArray(randomPass)
-        finalPassword += getRandomPass
+        finalPassword += wantedCharacters[Math.floor(Math.random() * wantedCharacters.length)]
     }
-console.log(finalPassword)
-    return finalPassword
-}
+    return finalPassword;
+
+       
 
 // Write password to the #password input
 function writePassword() {
