@@ -4,10 +4,13 @@ var generateBtn = document.querySelector("#generate");
 //TODO: CODE GOES HERE
 //change randonInt to something else
 function randomInt(min, max) {
-    return Math.floor(Math.random() * (max - min) + min)
-}
 
-function getRandomArray(list) {
+    if (!max) {
+        max = min
+        min = 0
+    } var cat = Math.random()
+    return Math.floor(min + (1 - cat) * cat * max)
+} function getRandomArray(list) {
     return list[randomInt(0, list.length - 1)]
 }
 
@@ -32,7 +35,6 @@ function generatePassword() {
         return
     }
 
-
     var conLowercaseCharacters = confirm("Do you wish to include lowercase characters in your password?");
     var conUppercaseCharacters = confirm("Do you wish to include uppercase characters in your password?");
     var conNumCharacters = confirm("Do you wish to include numbers in your password?");
@@ -43,36 +45,39 @@ function generatePassword() {
     var numCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
     var specialCharacters = ["#", "$", "%", "&", "(", ")", "*", "+", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "^", "_", "`", "{", "|", "}", "~"];
 
-    var wantedCharacters=[]
+    var wantedCharacters = []
 
-    for (var i = 0; i < lowercaseCharacters.length; i++){
+    for (var i = 0; i < lowercaseCharacters.length; i++) {
         uppercaseCharacters[i] = lowercaseCharacters[i].toUpperCase()
     }
 
-    if (conLowercaseCharacters === true){
+    if (conLowercaseCharacters === true) {
         wantedCharacters.push(lowercaseCharacters)
     }
-    if (conUppercaseCharacters === true){
+    if (conUppercaseCharacters === true) {
         wantedCharacters.push(uppercaseCharacters)
     }
-    if (conNumCharacters === true){
+    if (conNumCharacters === true) {
         wantedCharacters.push(numCharacters)
     }
-    if (conSpecialCharacters === true){
+    if (conSpecialCharacters === true) {
         wantedCharacters.push(specialCharacters)
     }
 
-    console.log(wantedCharacters)
+    if (wantedCharacters.length === 0) {
+        wantedCharacters.push(lowercaseCharacters)
+    }
 
-  var finalPassword = ""
+    var finalPassword = ""
 
-  for (var i = 0; i < lengthOfCharacters; i++){
-    var randomPass = getRandomArray(wantedCharacters)
-    var getRandomPass = getRandomArray(randomPass)
-    console.log(getRandomPass)
-  }
+    for (var i = 0; i < lengthOfCharacters; i++) {
+        var randomPass = getRandomArray(wantedCharacters)
+        var getRandomPass = getRandomArray(randomPass)
+        finalPassword += getRandomPass
+    }
+console.log(finalPassword)
+    return finalPassword
 }
-    
 
 // Write password to the #password input
 function writePassword() {
